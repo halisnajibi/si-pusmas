@@ -1,3 +1,20 @@
+<?php
+require "../functions.php";
+$id = $_GET["id"];
+$pasien = tabel("SELECT * FROM pasien WHERE id_pasien='$id'")[0];
+$rm = tabel("SELECT * FROM rekam_medis WHERE id_pasien='$id'")[0];
+
+if (isset($_POST["simpan"])) {
+    if (editPasien($_POST) > 0) {
+        echo
+        " <script>
+          alert('data berhasil di update');
+           document.location.href='pasien.php';
+        </script> ";
+    }
+}
+?>
+
 <!doctype html>
 <html lang="en">
 
@@ -136,35 +153,36 @@
                                 </div>
                                 <div class="card-body">
                                     <form id="basic-form" method="post" novalidate>
-                                        <div class="form-group">
+                                        <input type="hidden" name="id_pasien" value="<?= $pasien["id_pasien"] ?>">
+                                        <div class=" form-group">
                                             <label>Nik</label>
-                                            <input type="text" class="form-control" required>
+                                            <input type="text" class="form-control" required value="<?= $pasien["nik"] ?>" name="nik">
                                         </div>
                                         <div class="form-group">
                                             <label>Nama</label>
-                                            <input type="text" class="form-control" required>
+                                            <input type="text" class="form-control" required value="<?= $pasien["nama"] ?>" name="nama">
                                         </div>
                                         <div class="form-group">
-                                            <label>Jenis Kelamin</label><span class="bg-primary rounded ml-2 p-1 text-white">disini</span>
+                                            <label>Jenis Kelamin</label><span class="bg-primary rounded ml-2 p-1 text-white"><?= $pasien["jk"] ?></span>
                                             <br />
                                             <label class="custom-control custom-radio custom-control-inline">
-                                                <input type="radio" class="custom-control-input" name="gender" value="laki-laki" required data-parsley-errors-container="#error-radio">
+                                                <input type="radio" class="custom-control-input" name="jk" value="laki-laki" required data-parsley-errors-container="#error-radio">
                                                 <span class="custom-control-label">Laki-Laki</span>
                                             </label>
 
                                             <label class="custom-control custom-radio custom-control-inline">
-                                                <input type="radio" class="custom-control-input" name="gender" value="perempuan">
+                                                <input type="radio" class="custom-control-input" name="jk" value="perempuan">
                                                 <span class="custom-control-label">Perempuan</span>
                                             </label>
                                             <p id="error-radio"></p>
                                         </div>
                                         <div class="form-group">
                                             <label>Tanggal Lahir</label>
-                                            <input type="date" class="form-control" required>
+                                            <input type="date" class="form-control" required value="<?= $pasien["tanggal_lahir"] ?>" name="tanggal_lahir">
                                         </div>
                                         <div class="form-group">
-                                            <label>Golongan Darah</label><span class="bg-primary rounded ml-2 p-1 text-white">disini</span>
-                                            <select class="form-control custom-select">
+                                            <label>Golongan Darah</label><span class="bg-primary rounded ml-2 p-1 text-white"><?= $pasien["gol_darah"] ?></span>
+                                            <select class="form-control custom-select" name="gol_darah">
                                                 <option value="a">A</option>
                                                 <option value="b">B</option>
                                                 <option value="ab">AB</option>
@@ -172,8 +190,8 @@
                                             </select>
                                         </div>
                                         <div class="form-group">
-                                            <label>Agama</label><span class="bg-primary rounded ml-2 p-1 text-white">disini</span>
-                                            <select class="form-control custom-select">
+                                            <label>Agama</label><span class="bg-primary rounded ml-2 p-1 text-white"><?= $pasien["agama"] ?></span>
+                                            <select class="form-control custom-select" name="agama">
                                                 <option value="islam">Islam</option>
                                                 <option value="kristen">Kristen</option>
                                                 <option value="katolik">Katolik</option>
@@ -184,23 +202,20 @@
                                         </div>
                                         <div class="form-group">
                                             <label>Pekerjaan</label>
-                                            <input type="text" class="form-control" required>
+                                            <input type="text" class="form-control" required name="pekerjaan" value="<?= $pasien["pekerjaan"] ?>">
                                         </div>
                                         <div class="form-group">
                                             <label>Alamat</label>
-                                            <input type="text" class="form-control" required>
+                                            <input type="text" class="form-control" required name="alamat" value="<?= $pasien["alamat"] ?>">
                                         </div>
                                         <div class="form-group">
                                             <label>Telepon</label>
-                                            <input type="text" class="form-control" required>
+                                            <input type="text" class="form-control" required name="telepon" value="<?= $pasien["telepon"] ?>">
                                         </div>
+
                                         <div class="form-group">
-                                            <label>No Rekam Medis</label>
-                                            <input type="text" class="form-control" required readonly>
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Jamkes</label><span class="bg-primary rounded ml-2 p-1 text-white">disini</span>
-                                            <select class="form-control custom-select">
+                                            <label>Jamkes</label><span class="bg-primary rounded ml-2 p-1 text-white"><?= $rm["jamkes"] ?></span>
+                                            <select class="form-control custom-select" name="jamkes">
                                                 <option value="bpjs">BPJS</option>
                                                 <option value="tidak ada">Tidak Ada</option>
 
@@ -208,9 +223,9 @@
                                         </div>
                                         <div class="form-group">
                                             <label>No Jamkes</label>
-                                            <input type="text" class="form-control">
+                                            <input type="text" class="form-control" value="<?= $rm["no_jamkes"] ?>" name="no_jamkes">
                                         </div>
-                                        <button type="submit" class="btn btn-primary">Simpan</button>
+                                        <button type=" submit" class="btn btn-primary" name="simpan">Simpan</button>
                                     </form>
                                 </div>
                             </div>

@@ -1,3 +1,16 @@
+<?php
+require "../functions.php";
+if (isset($_POST["simpan"])) {
+    if (tambahPasien($_POST) > 0) {
+        echo
+        " <script>
+          alert('data berhasil di simpan');
+           document.location.href='pasien.php';
+        </script> ";
+    }
+}
+?>
+
 <!doctype html>
 <html lang="en">
 
@@ -138,33 +151,33 @@
                                     <form id="basic-form" method="post" novalidate>
                                         <div class="form-group">
                                             <label>Nik</label>
-                                            <input type="text" class="form-control" required>
+                                            <input type="text" class="form-control" required name="nik" autocomplete="off">
                                         </div>
                                         <div class="form-group">
                                             <label>Nama</label>
-                                            <input type="text" class="form-control" required>
+                                            <input type="text" class="form-control" required name="nama" autocomplete="off">
                                         </div>
                                         <div class="form-group">
                                             <label>Jenis Kelamin</label>
                                             <br />
                                             <label class="custom-control custom-radio custom-control-inline">
-                                                <input type="radio" class="custom-control-input" name="gender" value="laki-laki" required data-parsley-errors-container="#error-radio">
+                                                <input type="radio" class="custom-control-input" value="laki-laki" required data-parsley-errors-container="#error-radio" name="jk">
                                                 <span class="custom-control-label">Laki-Laki</span>
                                             </label>
 
                                             <label class="custom-control custom-radio custom-control-inline">
-                                                <input type="radio" class="custom-control-input" name="gender" value="perempuan">
+                                                <input type="radio" class="custom-control-input" value="perempuan" name="jk">
                                                 <span class="custom-control-label">Perempuan</span>
                                             </label>
                                             <p id="error-radio"></p>
                                         </div>
                                         <div class="form-group">
                                             <label>Tanggal Lahir</label>
-                                            <input type="date" class="form-control" required>
+                                            <input type="date" class="form-control" required name="tanggal_lahir">
                                         </div>
                                         <div class="form-group">
                                             <label>Golongan Darah</label>
-                                            <select class="form-control custom-select">
+                                            <select class="form-control custom-select" name="gol_darah">
                                                 <option value="a">A</option>
                                                 <option value="b">B</option>
                                                 <option value="ab">AB</option>
@@ -173,7 +186,7 @@
                                         </div>
                                         <div class="form-group">
                                             <label>Agama</label>
-                                            <select class="form-control custom-select">
+                                            <select class="form-control custom-select" name="agama">
                                                 <option value="islam">Islam</option>
                                                 <option value="kristen">Kristen</option>
                                                 <option value="katolik">Katolik</option>
@@ -184,23 +197,47 @@
                                         </div>
                                         <div class="form-group">
                                             <label>Pekerjaan</label>
-                                            <input type="text" class="form-control" required>
+                                            <input type="text" class="form-control" required name="pekerjaan" autocomplete="off">
                                         </div>
                                         <div class="form-group">
                                             <label>Alamat</label>
-                                            <input type="text" class="form-control" required>
+                                            <input type="text" class="form-control" required name="alamat" autocomplete="off">
                                         </div>
                                         <div class="form-group">
                                             <label>Telepon</label>
-                                            <input type="text" class="form-control" required>
+                                            <input type="text" class="form-control" required name="telepon" autocomplete="off">
                                         </div>
+                                        <?php
+
+                                        // mengambil data barang dengan kode paling besar
+                                        $query = mysqli_query($conn, "SELECT max(no_rm) as kodeTerbesar FROM rekam_medis");
+                                        $data = mysqli_fetch_array($query);
+                                        $kodeBarang = $data['kodeTerbesar'];
+
+                                        // mengambil angka dari kode barang terbesar, menggunakan fungsi substr
+                                        // dan diubah ke integer dengan (int)
+                                        $urutan = (int) substr($kodeBarang, 3, 3);
+
+                                        // bilangan yang diambil ini ditambah 1 untuk menentukan nomor urut berikutnya
+                                        $urutan++;
+
+                                        // membentuk kode barang baru
+                                        // perintah sprintf("%03s", $urutan); berguna untuk membuat string menjadi 3 karakter
+                                        // misalnya perintah sprintf("%03s", 15); maka akan menghasilkan '015'
+                                        // angka yang diambil tadi digabungkan dengan kode huruf yang kita inginkan, misalnya BRG 
+                                        $tahun = (int)date('Y');
+                                        $huruf = "RM" . $tahun . "-";
+                                        $kodeBarang = $huruf . sprintf("%03s", $urutan);
+
+
+                                        ?>
                                         <div class="form-group">
                                             <label>No Rekam Medis</label>
-                                            <input type="text" class="form-control" required readonly>
+                                            <input type="text" class="form-control" required readonly name="nrm" value="<?= $kodeBarang ?>">
                                         </div>
                                         <div class="form-group">
                                             <label>Jamkes</label>
-                                            <select class="form-control custom-select">
+                                            <select class="form-control custom-select" name="jamkes">
                                                 <option value="bpjs">BPJS</option>
                                                 <option value="tidak ada">Tidak Ada</option>
 
@@ -208,9 +245,9 @@
                                         </div>
                                         <div class="form-group">
                                             <label>No Jamkes</label>
-                                            <input type="text" class="form-control">
+                                            <input type="text" class="form-control" name="no_jamkes" autocomplete="off">
                                         </div>
-                                        <button type="submit" class="btn btn-primary">Simpan</button>
+                                        <button type="submit" class="btn btn-primary" name="simpan">Simpan</button>
                                     </form>
                                 </div>
                             </div>

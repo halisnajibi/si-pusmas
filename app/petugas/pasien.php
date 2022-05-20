@@ -1,3 +1,8 @@
+<?php
+require "../functions.php";
+$semuaPasien = tabel("SELECT * FROM pasien");
+?>
+
 <!doctype html>
 <html lang="en">
 
@@ -155,27 +160,31 @@
                                     </thead>
 
                                     <tbody>
-                                        <tr>
-                                            <td>dddd</td>
-                                            <th>566</th>
-                                            <td>dddlllllddddddddddddddddddd</td>
-                                            <td>dddddd</td>
-                                            <td>ddddddddddddddddd</td>
-                                            <td>dddddd</td>
-                                            <td>ddddddddaaaaaaaaaaaaaaaa</td>
-                                            <td>dddddd</td>
-                                            <td>eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee</td>
-                                            <td>dddddd</td>
+                                        <?php $i = 1; ?>
+                                        <?php foreach ($semuaPasien as $data) : ?>
+                                            <tr>
+                                                <td><?= $i ?></td>
+                                                <th><?= $data["nik"] ?></th>
+                                                <td><?= $data["nama"] ?></td>
+                                                <td><?= $data["tanggal_lahir"] ?></td>
+                                                <td><?= $data["jk"] ?></td>
+                                                <td><?= $data["gol_darah"] ?></td>
+                                                <td><?= $data["agama"] ?></td>
+                                                <td><?= $data["pekerjaan"] ?></td>
+                                                <td><?= $data["alamat"] ?></td>
+                                                <td><?= $data["telepon"] ?></td>
 
-                                            <td class="actions">
-                                                <a href="edit_pasien.php">
-                                                    <button class="btn btn-sm btn-icon on-default m-r-5 button-edit" data-toggle="tooltip" data-original-title="Edit"><i class="icon-pencil" aria-hidden="true"></i></button>
-                                                </a>
-                                                <a href="hapus_pasien.php">
-                                                    <button class="btn btn-sm btn-icon on-default button-remove" data-toggle="tooltip" data-original-title="Hapus"><i class="icon-trash" aria-hidden="true"></i></button>
-                                                </a>
-                                            </td>
-                                        </tr>
+                                                <td class="actions">
+                                                    <a href="edit_pasien.php?id=<?= $data["id_pasien"] ?>">
+                                                        <button class="btn btn-sm btn-icon on-default m-r-5 button-edit" data-toggle="tooltip" data-original-title="Edit"><i class="icon-pencil" aria-hidden="true"></i></button>
+                                                    </a>
+                                                    <a href="hapus_pasien.php?id=<?= $data["id_pasien"] ?>"">
+                                                        <button class=" btn btn-sm btn-icon on-default button-remove" data-toggle="tooltip" data-original-title="Hapus"><i class="icon-trash" aria-hidden="true" onclick="return confirm('anda yakin menghapus data ini?')"></i></button>
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                            <?php $i++; ?>
+                                        <?php endforeach; ?>
                                     </tbody>
                                 </table>
                             </div>
