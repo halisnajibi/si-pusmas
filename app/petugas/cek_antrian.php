@@ -5,6 +5,7 @@ require "../functions.php";
 $pendaftaran = tabel("SELECT * FROM pendaftaran INNER JOIN pasien ON pendaftaran.id_pasien=pasien.id_pasien INNER JOIN poli ON pendaftaran.id_poli=poli.id_poli");
 
 
+
 ?>
 <!doctype html>
 <html lang="en">
@@ -112,7 +113,7 @@ $pendaftaran = tabel("SELECT * FROM pendaftaran INNER JOIN pasien ON pendaftaran
                 <div class="container-fluid">
                     <div class="page-header">
                         <div class="left">
-                            <h1 class="page-title">Data Berobat</h1>
+                            <h1 class="page-title">Antrian Berobat</h1>
 
 
                         </div>
@@ -158,7 +159,7 @@ $pendaftaran = tabel("SELECT * FROM pendaftaran INNER JOIN pasien ON pendaftaran
                                             <tr class="gradeA">
                                                 <td><?= $i ?></td>
                                                 <td><?= $data["tanggal"] ?></td>
-                                                <td><?= $data["no_antrian"] ?></td>
+                                                <td><?= $data["no_antri"] ?></td>
                                                 <td><?= $data["nik"] ?></td>
                                                 <td><?= $data["nama"] ?></td>
                                                 <td><?= $data["nama_poli"] ?></td>

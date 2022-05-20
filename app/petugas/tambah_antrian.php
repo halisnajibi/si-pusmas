@@ -172,33 +172,7 @@ if (isset($_POST["simpan"])) {
                                                 <?php endforeach; ?>
                                             </select>
                                         </div>
-                                        <?php
 
-                                        // mengambil data barang dengan kode paling besar
-                                        $query = mysqli_query($conn, "SELECT max(no_antrian) as kodeTerbesar FROM pendaftaran");
-                                        $data = mysqli_fetch_array($query);
-                                        $kodeBarang = $data['kodeTerbesar'];
-
-                                        // mengambil angka dari kode barang terbesar, menggunakan fungsi substr
-                                        // dan diubah ke integer dengan (int)
-                                        $urutan = (int) substr($kodeBarang, 3, 3);
-
-                                        // bilangan yang diambil ini ditambah 1 untuk menentukan nomor urut berikutnya
-                                        $urutan++;
-
-                                        // membentuk kode barang baru
-                                        // perintah sprintf("%03s", $urutan); berguna untuk membuat string menjadi 3 karakter
-                                        // misalnya perintah sprintf("%03s", 15); maka akan menghasilkan '015'
-                                        // angka yang diambil tadi digabungkan dengan kode huruf yang kita inginkan, misalnya BRG 
-
-                                        $kodeBarang = sprintf("%03s", $urutan);
-
-
-                                        ?>
-                                        <div class="form-group">
-                                            <label>No Antrian</label>
-                                            <input type="text" class="form-control" readonly name="no_antrian" value="<?= $kodeBarang ?>">
-                                        </div>
 
                                         <button type="submit" class="btn btn-primary" name="simpan">Simpan</button>
                                     </form>

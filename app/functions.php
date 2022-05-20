@@ -103,12 +103,44 @@ function tambahAntrian($pos)
     global $conn;
     $idpas = $pos['id_pasien'];
     $poli = $pos["jp"];
-    $noAntri = $pos["no_antrian"];
+    if ($pos["jp"] == 3) {
+        $query = mysqli_query($conn, "SELECT max(no_antri) as kodeTerbesar FROM pendaftaran WHERE id_poli=3");
+        $data = mysqli_fetch_array($query);
+        $kodeBarang = $data['kodeTerbesar'];
+        $urutan = (int) substr($kodeBarang, 3, 3);
+        $urutan++;
+        $huruf = "UM";
+        $no = sprintf("%03s", $urutan);
+        $kodeBarang = $huruf . '-' . $no;
+        $noAntri = $kodeBarang;
+    } elseif ($pos["jp"] == 4) {
+        $query = mysqli_query($conn, "SELECT max(no_antri) as kodeTerbesar FROM pendaftaran WHERE id_poli=4");
+        $data = mysqli_fetch_array($query);
+        $kodeBarang = $data['kodeTerbesar'];
+        $urutan = (int) substr($kodeBarang, 3, 3);
+        $urutan++;
+        $huruf = "AN";
+        $no = sprintf("%03s", $urutan);
+        $kodeBarang = $huruf . '-' . $no;
+        $noAntri = $kodeBarang;
+    } else {
+        $query = mysqli_query($conn, "SELECT max(no_antri) as kodeTerbesar FROM pendaftaran WHERE id_poli=5");
+        $data = mysqli_fetch_array($query);
+        $kodeBarang = $data['kodeTerbesar'];
+        $urutan = (int) substr($kodeBarang, 3, 3);
+        $urutan++;
+        $huruf = "GG";
+        $no = sprintf("%03s", $urutan);
+        $kodeBarang = $huruf . '-' . $no;
+        $noAntri = $kodeBarang;
+    }
 
-    $sql = "INSERT INTO pendaftaran VALUES
+    $sql2 = "INSERT INTO pendaftaran VALUES
             ('',current_timestamp(),'menunggu','$poli','$idpas','$noAntri','')";
-    mysqli_query($conn, $sql);
+    mysqli_query($conn, $sql2);
     return mysqli_affected_rows($conn);
 }
+                                        
+
 
 // akhir petugas

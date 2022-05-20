@@ -1,6 +1,7 @@
 <?php
 require "../functions.php";
 $semuaPasien = tabel("SELECT * FROM pasien");
+
 ?>
 
 <!doctype html>
@@ -152,18 +153,19 @@ $semuaPasien = tabel("SELECT * FROM pasien");
                                     </thead>
                                     <tbody>
                                         <?php $i = 1; ?>
-                                        <?php foreach ($semuaPasien as $data) ?>
-                                        <tr>
-                                            <td><?= $i ?></td>
-                                            <th><?= $data["nik"] ?></th>
-                                            <td><?= $data["nama"] ?></td>
-                                            <td class="actions">
-                                                <a href="tambah_antrian.php?id=<?= $data["id_pasien"] ?>">
-                                                    <i class="material-icons  data-toggle=" tooltip" data-placement="top" title="Masuk Antrian"" style=" color:black ;">fast_forward</i>
-                                                </a>
-
-                                            </td>
-                                        </tr>
+                                        <?php foreach ($semuaPasien as $data) : ?>
+                                            <tr>
+                                                <td><?= $i ?></td>
+                                                <th><?= $data["nik"] ?></th>
+                                                <td><?= $data["nama"] ?></td>
+                                                <td class="actions">
+                                                    <a href="tambah_antrian.php?id=<?= $data["id_pasien"] ?>">
+                                                        <i class="material-icons  data-toggle=" tooltip" data-placement="top" title="Masuk Antrian"" style=" color:black ;">fast_forward</i>
+                                                    </a>
+                                                    <?php $i++ ?>
+                                                <?php endforeach; ?>
+                                                </td>
+                                            </tr>
                                     </tbody>
                                 </table>
                             </div>
