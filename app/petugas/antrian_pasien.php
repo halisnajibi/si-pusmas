@@ -1,3 +1,8 @@
+<?php
+require "../functions.php";
+$semuaPasien = tabel("SELECT * FROM pasien");
+?>
+
 <!doctype html>
 <html lang="en">
 
@@ -143,17 +148,17 @@
                                             <th>nik</th>
                                             <th>nama</th>
                                             <th>aksi</th>
-
                                         </tr>
                                     </thead>
-
                                     <tbody>
+                                        <?php $i = 1; ?>
+                                        <?php foreach ($semuaPasien as $data) ?>
                                         <tr>
-                                            <td>dddd</td>
-                                            <td>dddlllllddddddddddddddddddd</td>
-                                            <td>dddddd</td>
+                                            <td><?= $i ?></td>
+                                            <th><?= $data["nik"] ?></th>
+                                            <td><?= $data["nama"] ?></td>
                                             <td class="actions">
-                                                <a href="tambah_antrian.php">
+                                                <a href="tambah_antrian.php?id=<?= $data["id_pasien"] ?>">
                                                     <i class="material-icons  data-toggle=" tooltip" data-placement="top" title="Masuk Antrian"" style=" color:black ;">fast_forward</i>
                                                 </a>
 

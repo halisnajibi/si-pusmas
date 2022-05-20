@@ -181,6 +181,11 @@ $semuaPasien = tabel("SELECT * FROM pasien");
                                                     <a href="hapus_pasien.php?id=<?= $data["id_pasien"] ?>"">
                                                         <button class=" btn btn-sm btn-icon on-default button-remove" data-toggle="tooltip" data-original-title="Hapus"><i class="icon-trash" aria-hidden="true" onclick="return confirm('anda yakin menghapus data ini?')"></i></button>
                                                     </a>
+                                                    <a href="cetak_kartu_pasien.php?id=<?= $data["id_pasien"] ?>" target="_blank">
+                                                        <button class=" btn btn-sm btn-icon on-default button-remove" data-toggle="tooltip" data-original-title="Cetak Kartu">
+                                                            <i class="material-icons">print</i>
+                                                        </button>
+                                                    </a>
                                                 </td>
                                             </tr>
                                             <?php $i++; ?>

@@ -1,3 +1,11 @@
+<?php
+require "../functions.php";
+
+
+$pendaftaran = tabel("SELECT * FROM pendaftaran INNER JOIN pasien ON pendaftaran.id_pasien=pasien.id_pasien INNER JOIN poli ON pendaftaran.id_poli=poli.id_poli");
+
+
+?>
 <!doctype html>
 <html lang="en">
 
@@ -136,6 +144,7 @@
                                     <thead>
                                         <tr>
                                             <th>No</th>
+                                            <th>tanggal</th>
                                             <th>No Antrian</th>
                                             <th>Nik</th>
                                             <th>Nama</th>
@@ -144,14 +153,19 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr class="gradeA">
-                                            <td>1</td>
-                                            <td>bbj</td>
-                                            <td>lko</td>
-                                            <td>lll</td>
-                                            <td>kl</td>
-                                            <td>menunggu</td>
-                                        </tr>
+                                        <?php $i = 1; ?>
+                                        <?php foreach ($pendaftaran as $data) : ?>
+                                            <tr class="gradeA">
+                                                <td><?= $i ?></td>
+                                                <td><?= $data["tanggal"] ?></td>
+                                                <td><?= $data["no_antrian"] ?></td>
+                                                <td><?= $data["nik"] ?></td>
+                                                <td><?= $data["nama"] ?></td>
+                                                <td><?= $data["nama_poli"] ?></td>
+                                                <td><?= $data["status_pasien"] ?></td>
+                                            </tr>
+                                            <?php $i++; ?>
+                                        <?php endforeach; ?>
                                     </tbody>
                                 </table>
                             </div>

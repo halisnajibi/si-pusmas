@@ -97,4 +97,18 @@ function hapusPasien($id)
     return mysqli_affected_rows($conn);
 }
 
+//tambah antrian pasien
+function tambahAntrian($pos)
+{
+    global $conn;
+    $idpas = $pos['id_pasien'];
+    $poli = $pos["jp"];
+    $noAntri = $pos["no_antrian"];
+
+    $sql = "INSERT INTO pendaftaran VALUES
+            ('',current_timestamp(),'menunggu','$poli','$idpas','$noAntri','')";
+    mysqli_query($conn, $sql);
+    return mysqli_affected_rows($conn);
+}
+
 // akhir petugas
