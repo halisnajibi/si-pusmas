@@ -6,6 +6,7 @@ $pendaftaran = tabel("SELECT * FROM pendaftaran INNER JOIN pasien ON pendaftaran
 
 
 
+
 ?>
 <!doctype html>
 <html lang="en">
@@ -47,6 +48,8 @@ $pendaftaran = tabel("SELECT * FROM pendaftaran INNER JOIN pasien ON pendaftaran
     <!-- Core css -->
     <link rel="stylesheet" href="../../assets/css/main.css" />
     <link rel="stylesheet" href="../../assets/assets/css/theme1.css" id="theme_stylesheet" />
+
+
 </head>
 
 <body class="font-opensans">
@@ -103,7 +106,7 @@ $pendaftaran = tabel("SELECT * FROM pendaftaran INNER JOIN pasien ON pendaftaran
                     <li><a href="index.php"><i class="icon-home"></i><span>Dashboard</span></a></li>
                     <li class="active"><a href="data_antri.php"><i class="material-icons">pending_actions</i><span>Data Antrian</span></a></li>
 
-                    <li><a href="antrian_pasien.php"><i class="icon-notebook"></i><span>Data Berobat</span></a></li>
+                    <li><a href="rekam_medis.php"><i class="icon-notebook"></i><span>Data Rekam Medis</span></a></li>
                 </ul>
             </nav>
         </div>
@@ -176,19 +179,50 @@ $pendaftaran = tabel("SELECT * FROM pendaftaran INNER JOIN pasien ON pendaftaran
                                                 </td>
 
                                                 <td><?= $data["status_pasien"] ?></td>
+
                                                 <td class="actions">
                                                     <a href="periksa_pasien.php?id=<?= $data["id_pasien"] ?>">
                                                         <button class=" btn btn-sm btn-icon on-default button-remove" data-toggle="tooltip" data-original-title="Periksa Pasien">
                                                             <i class="material-icons">fact_check</i>
                                                         </button>
                                                     </a>
-                                                    <a href="cetak_kartu_pasien.php?id=<?= $data["id_pasien"] ?>" target="_blank">
-                                                        <button class=" btn btn-sm btn-icon on-default button-remove" data-toggle="tooltip" data-original-title="Data Pasien">
-                                                            <i class="material-icons">info</i>
-                                                        </button>
-                                                    </a>
+
+                                                    <button class=" btn btn-sm btn-icon on-default button-remove" data-toggle="modal" data-target="#info<?= $data["id_pasien"] ?>">
+                                                        <i class="material-icons">info</i>
+                                                    </button>
+
+                                                    <div class="modal fade" id="info<?= $data["id_pasien"] ?>" tabindex=" -1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                        <div class="modal-dialog">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <h5 class="modal-title" id="exampleModalLabel">Informasi Pasien</h5>
+                                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                        <span aria-hidden="true">&times;</span>
+                                                                    </button>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                    <table>
+                                                                        <tr>
+                                                                            <th>Nik</th>
+                                                                            <th>Nama</th>
+                                                                            <th>Golongan Darah</th>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td><?= $data["nik"] ?></td>
+                                                                            <td><?= $data["nama"] ?></td>
+                                                                            <td><?= $data["gol_darah"] ?></td>
+                                                                        </tr>
+                                                                    </table>
+                                                                </div>
+                                                                <div class="modal-footer">
+
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                 </td>
                                             </tr>
+
                                             <?php $i++; ?>
                                         <?php endforeach; ?>
                                     </tbody>
@@ -215,6 +249,9 @@ $pendaftaran = tabel("SELECT * FROM pendaftaran INNER JOIN pasien ON pendaftaran
             </div>
         </div>
     </div>
+
+
+
 
 
     <script src="../../assets/bundles/lib.vendor.bundle.js"></script>
