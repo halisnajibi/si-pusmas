@@ -140,7 +140,28 @@ function tambahAntrian($pos)
     mysqli_query($conn, $sql2);
     return mysqli_affected_rows($conn);
 }
-                                        
+
 
 
 // akhir petugas
+
+
+//dokter
+function periksaPasien($pos)
+{
+    global $conn;
+    $id_rm = $pos["id_rm"];
+    $sub = htmlspecialchars($pos["sub"]);
+    $obj = htmlspecialchars($pos["obj"]);
+    $ass = htmlspecialchars($pos["ass"]);
+    $plant = htmlspecialchars($pos["plant"]);
+    $idps = $pos["id_ps"];
+    $sql = "INSERT INTO detail_rm VALUES
+        ('','$id_rm',current_timestamp(),'$sub','$obj','$ass','$plant')";
+    $sql2 = "DELETE FROM pendaftaran WHERE id_pasien=$idps";
+    mysqli_query($conn, $sql);
+    mysqli_query($conn, $sql2);
+    return mysqli_affected_rows($conn);
+}
+
+//akhir dokter

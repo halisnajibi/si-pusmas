@@ -1,13 +1,12 @@
 <?php
 require "../functions.php";
 //merubah status pasien
-$id = $_GET["id"];
-$cekdata = tabel("SELECT * FROM pendaftaran WHERE id_pasien='$id'")[0];
-$sql = "UPDATE pendaftaran SET status_pasien='proses' WHERE id_pasien=$id";
-$query = mysqli_query($conn, $sql);
+// $id = $_GET["id"];
+// $cekdata = tabel("SELECT * FROM pendaftaran WHERE id_pasien='$id'")[0];
+// $sql = "UPDATE pendaftaran SET status_pasien='proses' WHERE id_pasien=$id";
+// $query = mysqli_query($conn, $sql);
 //akhir
 $rm = tabel("SELECT * FROM rekam_medis WHERE id_pasien='$id'")[0];
-$ps = tabel("SELECT * FROM pasien WHERE id_pasien='$id'")[0];
 
 //tambah detail_rm
 if (isset($_POST["simpan"])) {
@@ -15,9 +14,7 @@ if (isset($_POST["simpan"])) {
         echo
         " <script>
           alert('data berhasil di simpan');
-             document.location.href='data_antri.php';
-        </script> 
-        ";
+        </script> ";
     }
 }
 ?>
@@ -130,7 +127,7 @@ if (isset($_POST["simpan"])) {
                 <div class="container-fluid">
                     <div class="page-header">
                         <div class="left">
-                            <h1 class="page-title">Pemeriksaan Pasien</h1>
+                            <h1 class="page-title">Pencatatan Rekam Medis</h1>
 
 
                         </div>
@@ -163,28 +160,47 @@ if (isset($_POST["simpan"])) {
                                 <div class="card-body">
                                     <form id="basic-form" method="post" novalidate>
                                         <input type="hidden" name="id_rm" value="<?= $rm['id_rm'] ?>">
-                                        <input type="hidden" name="id_ps" value="<?= $ps['id_pasien'] ?>">
                                         <div class="form-group">
                                             <label>No Rekam Medis</label>
                                             <input type="text" class="form-control" required name="nrm" value="<?= $rm['no_rm'] ?>" readonly>
                                         </div>
                                         <div class="form-group">
-                                            <label>Subjektif</label>
-                                            <input type="text" class="form-control" required name="sub" autocomplete="off">
+                                            <label>Riwayat Penyakit Terdahulu</label>
+                                            <input type="text" class="form-control" required name="rpt" autocomplete="off">
                                         </div>
-
                                         <div class="form-group">
-                                            <label>Objektif </label>
-                                            <textarea class="form-control" name="obj" rows="6"></textarea>
-                                            <div class="form-group">
-                                                <label>Assemen</label>
-                                                <input type="text" class="form-control" required name="ass" autocomplete="off">
-                                            </div>
-                                            <div class="form-group">
-                                                <label>Plant</label>
-                                                <input type="text" class="form-control" required name="plant" autocomplete="off">
-                                            </div>
-                                            <button type="submit" class="btn btn-primary" name="simpan">Simpan</button>
+                                            <label>Riwayat Pemberian Obat</label>
+                                            <input type="text" class="form-control" required name="rpo" autocomplete="off">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Riwayat Alergi Makanan</label>
+                                            <input type="text" class="form-control" required name="ram" autocomplete="off">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Riwayat Alergi Obat</label>
+                                            <input type="text" class="form-control" required name="rao" autocomplete="off">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Riwayat Operasi</label>
+                                            <input type="text" class="form-control" required name="ro" autocomplete="off">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Riwayat Ayah</label>
+                                            <input type="text" class="form-control" required name="ra" autocomplete="off">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Riwayat Ibu</label>
+                                            <input type="text" class="form-control" required name="ri" autocomplete="off">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Jamkes</label>
+                                            <input type="text" class="form-control" required name="ram" autocomplete="off" value="<?= $rm['jamkes'] ?>" readonly>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>No Jamkes</label>
+                                            <input type="text" class="form-control" required name="ram" autocomplete="off" value="<?= $rm['no_jamkes'] ?>" readonly>
+                                        </div>
+                                        <button type="submit" class="btn btn-primary" name="simpan">Simpan</button>
                                     </form>
                                 </div>
                             </div>
