@@ -164,4 +164,34 @@ function periksaPasien($pos)
     return mysqli_affected_rows($conn);
 }
 
+// resep obat
+function resepObat($pos)
+{
+    global $conn;
+    $idpas = $pos["idpas"];
+    $id_obat = $pos["nama_obat"];
+    $ko = $pos["ko"];
+    $jum = $pos["jumlah"];
+    $ket = htmlspecialchars($pos["ket"]);
+
+    //insest tabel resep_obat
+    $sql1 = "INSERT INTO resep_obat VALUES('','$idpas','1',current_timestamp(),'berobat')";
+    mysqli_query($conn, $sql1);
+    //insert tabel detail_resobt
+    $ambildata = mysqli_query($conn, "SELECT * FROM resep_obat ORDER BY id_ro DESC LIMIT 1");
+    $ambil = mysqli_fetch_assoc($ambildata);
+    $id_ro = $ambil["id_ro"];
+    $sql2 = "INSERT INTO detail_resep_obat VALUES('','$id_ro','$id_obat','$jum','$ket')";
+    mysqli_query($conn, $sql2);
+    //update tabel obat
+    $ambildata = mysqli_query($conn, "SELECT * FROM obat WHERE id_obat='$id_obat'");
+    $ambil = mysqli_fetch_assoc($ambildata);
+    $stokterdahulu = $ambil["stok"];
+    $stokbaru = $stokterdahulu - $jum;
+    $sql3 = "UPDATE obat SET stok ='$stokbaru' WHERE id_obat=$id_obat";
+    mysqli_query($conn, $sql3);
+
+    return mysqli_affected_rows($conn);
+}
+
 //akhir dokter

@@ -1,5 +1,6 @@
 <?php
 require "../functions.php";
+session_start();
 //merubah status pasien
 $id = $_GET["id"];
 $cekdata = tabel("SELECT * FROM pendaftaran WHERE id_pasien='$id'")[0];
@@ -9,13 +10,16 @@ $query = mysqli_query($conn, $sql);
 $rm = tabel("SELECT * FROM rekam_medis WHERE id_pasien='$id'")[0];
 $ps = tabel("SELECT * FROM pasien WHERE id_pasien='$id'")[0];
 
+// set session id pasien
+$_SESSION["id_pasien"] = $_GET["id"];
+
 //tambah detail_rm
 if (isset($_POST["simpan"])) {
     if (periksaPasien($_POST) > 0) {
         echo
         " <script>
           alert('data berhasil di simpan');
-             document.location.href='data_antri.php';
+             document.location.href='resep_obat.php';
         </script> 
         ";
     }
@@ -162,11 +166,11 @@ if (isset($_POST["simpan"])) {
                                 </div>
                                 <div class="card-body">
                                     <form id="basic-form" method="post" novalidate>
-                                        <input type="hidden" name="id_rm" value="<?= $rm['id_rm'] ?>">
-                                        <input type="hidden" name="id_ps" value="<?= $ps['id_pasien'] ?>">
+                                        <input type="hidden" name="id_rm" value="<?= $rm["id_rm"] ?>">
+                                        <input type="hidden" name="id_ps" value="<?= $ps["id_pasien"] ?>">
                                         <div class="form-group">
                                             <label>No Rekam Medis</label>
-                                            <input type="text" class="form-control" required name="nrm" value="<?= $rm['no_rm'] ?>" readonly>
+                                            <input type="text" class="form-control" required name="nrm" readonly value="<?= $rm["no_rm"] ?>">
                                         </div>
                                         <div class="form-group">
                                             <label>Subjektif</label>
@@ -184,6 +188,7 @@ if (isset($_POST["simpan"])) {
                                                 <label>Plant</label>
                                                 <input type="text" class="form-control" required name="plant" autocomplete="off">
                                             </div>
+
                                             <button type="submit" class="btn btn-primary" name="simpan">Simpan</button>
                                     </form>
                                 </div>

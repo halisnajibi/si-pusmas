@@ -226,7 +226,7 @@ if (isset($_POST["simpan"])) {
                                         // misalnya perintah sprintf("%03s", 15); maka akan menghasilkan '015'
                                         // angka yang diambil tadi digabungkan dengan kode huruf yang kita inginkan, misalnya BRG 
                                         $tahun = (int)date('Y');
-                                        $huruf = "RM" . $tahun . "-";
+                                        $huruf = "RM";
                                         $kodeBarang = $huruf . sprintf("%03s", $urutan);
 
 

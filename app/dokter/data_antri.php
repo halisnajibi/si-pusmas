@@ -1,6 +1,7 @@
 <?php
 require "../functions.php";
-
+session_start();
+$_SESSION["tes"] = "uji coba";
 
 $pendaftaran = tabel("SELECT * FROM pendaftaran INNER JOIN pasien ON pendaftaran.id_pasien=pasien.id_pasien INNER JOIN poli ON pendaftaran.id_poli=poli.id_poli ");
 
@@ -186,7 +187,6 @@ $pendaftaran = tabel("SELECT * FROM pendaftaran INNER JOIN pasien ON pendaftaran
                                                             <i class="material-icons">fact_check</i>
                                                         </button>
                                                     </a>
-
                                                     <button class=" btn btn-sm btn-icon on-default button-remove" data-toggle="modal" data-target="#info<?= $data["id_pasien"] ?>">
                                                         <i class="material-icons">info</i>
                                                     </button>
