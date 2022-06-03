@@ -165,7 +165,7 @@ $semuaPasien = tabel("SELECT * FROM pasien");
                                             <tr>
                                                 <td><?= $i ?></td>
                                                 <th><?= $data["nik"] ?></th>
-                                                <td><?= $data["nama"] ?></td>
+                                                <td><?= $data["nama_pasien"] ?></td>
                                                 <td><?= $data["tanggal_lahir"] ?></td>
                                                 <td><?= $data["jk"] ?></td>
                                                 <td><?= $data["gol_darah"] ?></td>

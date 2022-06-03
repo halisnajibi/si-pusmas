@@ -1,3 +1,11 @@
+<?php
+require "../functions.php";
+$biodata = tabel("SELECT * FROM resep_obat INNER JOIN  pasien ON resep_obat.id_pasien=pasien.id_pasien INNER JOIN dokter ON resep_obat.id_dokter=dokter.id_dokter ORDER BY id_ro DESC LIMIT 1")[0];
+$idro = $biodata['id_ro'];
+$nama_obat = tabel("SELECT * FROM detail_resep_obat INNER JOIN obat ON detail_resep_obat.id_obat=obat.id_obat INNER JOIN kategori_obat ON obat.id_ko=kategori_obat.id_ko WHERE id_ro='$idro'");
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -27,24 +35,21 @@
     </tr>
     <tr>
      <td>Nama Pasien</td>
-     <td>: nama | rekam medis</td>
+     <td>: <?= $biodata["nama_pasien"] ?> </td>
     </tr>
     <tr>
      <td>Dokter Pemeriksa</td>
-     <td>: nama dokter </td>
+     <td>: <?= $biodata["nama_dokter"] ?> </td>
     </tr>
-    <tr>
-     <td>poli</td>
-     <td>: haha</td>
-    </tr>
+
     <tr>
      <td>Tanggal & Waktu Kunjungan</td>
-     <td>: od9dj</td>
+     <td>: <?= $biodata["waktu"] ?> </td>
     </tr>
    </table>
   </div>
   <div class="nama-obat">
-   <table width="100%" border="1">
+   <table width="100%" border="1" cellspacing="0">
     <tr>
      <th>No</th>
      <th>Nama Obat</th>
@@ -52,25 +57,38 @@
      <th>jumlah</th>
      <th>Keterangan</th>
     </tr>
+    <?php
+    $i = 1;
+    $total = 0;
+    ?>
+    <?php foreach ($nama_obat as $data) :
+     $total += $data["jumlah"];
+    ?>
+     <tr>
+      <td><?= $i ?></td>
+      <td><?= $data["nama_obat"] ?></td>
+      <td><?= $data["nama_ko"] ?></td>
+      <td><?= $data["jumlah"] ?></td>
+      <td><?= $data["keterangan"] ?></td>
+     </tr>
+     <?php $i++; ?>
+    <?php endforeach; ?>
     <tr>
-     <th>1</th>
-     <td>sdsda</td>
-     <td>ee</td>
-     <td>3</td>
-     <td>dddddd</td>
-    </tr>
-    <tr>
-     <td colspan="3">total</td>
-     <td>8</td>
+     <td colspan="3" style="text-align: center;">TOTAL</td>
+     <td><?= $total ?></td>
     </tr>
    </table>
   </div>
  </div>
  <p class="apotek">bawa resep obat ke bagian apoteker !!</p>
  <div class="tanda-tangan">
-  <p>nama dokter</p>
+  <p><?= $biodata["nama_dokter"] ?></p>
   <p>nip 124445</p>
  </div>
+
+ <script>
+  window.print();
+ </script>
 </body>
 
 </html>

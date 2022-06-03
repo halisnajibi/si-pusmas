@@ -161,7 +161,7 @@ $pendaftaran = tabel("SELECT * FROM pendaftaran INNER JOIN pasien ON pendaftaran
                                                 <td><?= $data["tanggal"] ?></td>
                                                 <td><?= $data["no_antri"] ?></td>
                                                 <td><?= $data["nik"] ?></td>
-                                                <td><?= $data["nama"] ?></td>
+                                                <td><?= $data["nama_pasien"] ?></td>
                                                 <td><?= $data["nama_poli"] ?></td>
                                                 <td><?= $data["status_pasien"] ?></td>
                                             </tr>

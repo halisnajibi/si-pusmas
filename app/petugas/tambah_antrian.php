@@ -159,7 +159,7 @@ if (isset($_POST["simpan"])) {
                                         </div>
                                         <div class="form-group">
                                             <label>Nama</label>
-                                            <input type="text" class="form-control" readonly name="nama" value="<?= $pasien['nama'] ?>">
+                                            <input type="text" class="form-control" readonly name="nama" value="<?= $pasien['nama_pasien'] ?>">
                                         </div>
                                         <?php
                                         $poli = tabel("SELECT * FROM poli");

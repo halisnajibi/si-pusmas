@@ -19,7 +19,7 @@ $rm = tabel("SELECT * FROM rekam_medis WHERE id_pasien='$id'")[0];
     <div class="container">
         <h2>Kartu Berobat - Pasien</h2>
         <img src="../../assets/image/logo-puskesmas-terbaru-sesuai-permenkes-tahun-1.png" alt="logo puskemas">
-        <h2><?= $pasien["nama"] ?></h2>
+        <h2><?= $pasien["nama_pasien"] ?></h2>
         <h3><?= $rm["no_rm"] ?></h3>
         <h5>NIK :<?= $pasien["nik"] ?></h5>
         <h5><?= $pasien["tanggal_lahir"] ?> | <?= $pasien["jk"] ?></h5>

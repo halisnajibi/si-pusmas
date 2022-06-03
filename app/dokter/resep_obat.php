@@ -11,9 +11,8 @@ if (isset($_POST["simpan"])) {
     echo
     " <script>
           alert('data berhasil di simpan');
-             document.location.href='data_antri.php';
-        </script> 
-        ";
+             document.location.href='cetak_resep_obat.php';
+        </script> ";
   }
 }
 ?>

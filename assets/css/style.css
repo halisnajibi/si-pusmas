@@ -23,23 +23,23 @@
 
 .cetak_ro .logo-hss {
     float: left;
-    width: 100px;
+    width: 50px;
     margin-top: -100px;
-    margin-left: 200px;
+    margin-left: 20px;
 }
 
 .cetak_ro .logo-puskes {
     float: right;
-    width: 100px;
+    width: 50px;
     margin-top: -100px;
-    margin-right: 200px;
+    margin-right: 20px;
 }
 
 .cetak_ro p {
     clear: both;
     font-size: 20px;
     text-align: center;
-    margin-top: 50px;
+    margin-top: 10px;
 }
 
 .biodata {

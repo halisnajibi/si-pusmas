@@ -157,7 +157,7 @@ $semuaPasien = tabel("SELECT * FROM pasien");
                                             <tr>
                                                 <td><?= $i ?></td>
                                                 <th><?= $data["nik"] ?></th>
-                                                <td><?= $data["nama"] ?></td>
+                                                <td><?= $data["nama_pasien"] ?></td>
                                                 <td class="actions">
                                                     <a href="tambah_antrian.php?id=<?= $data["id_pasien"] ?>">
                                                         <i class="material-icons  data-toggle=" tooltip" data-placement="top" title="Masuk Antrian"" style=" color:black ;">fast_forward</i>
