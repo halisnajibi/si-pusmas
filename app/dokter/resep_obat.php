@@ -160,7 +160,7 @@ if (isset($_POST["simpan"])) {
                   <form id="basic-form" method="post" novalidate>
                     <input type="hidden" name="idpas" value="<?= $pasien['id_pasien'] ?>">
                     <div class="form-group">
-                      <label>Nama Obat</label>
+                      <label>Nama Obat 1</label>
                       <select class="form-control custom-select" name="nama_obat">
                         <?php foreach ($no as $data) : ?>
                           <option value="<?= $data['id_obat'] ?>"><?= $data['nama_obat'] ?></option>
@@ -183,6 +183,31 @@ if (isset($_POST["simpan"])) {
                       <label>Keterangan</label>
                       <input type="text" class="form-control" required name="ket" autocomplete="off">
                     </div>
+                    <div class="form-group">
+                      <label>Nama Obat 2</label>
+                      <select class="form-control custom-select" name="nama_obat2">
+                        <?php foreach ($no as $data) : ?>
+                          <option value="<?= $data['id_obat'] ?>"><?= $data['nama_obat'] ?></option>
+                        <?php endforeach; ?>
+                      </select>
+                    </div>
+                    <div class="form-group">
+                      <label>Kategori Obat</label>
+                      <select class="form-control custom-select" name="ko2">
+                        <?php foreach ($ko as $data) : ?>
+                          <option value="<?= $data['id_ko'] ?>"><?= $data['nama_ko'] ?></option>
+                        <?php endforeach; ?>
+                      </select>
+                    </div>
+                    <div class="form-group">
+                      <label>Jumlah</label>
+                      <input type="number" class="form-control" required name="jumlah2" autocomplete="off">
+                    </div>
+                    <div class="form-group">
+                      <label>Keterangan</label>
+                      <input type="text" class="form-control" required name="ket2" autocomplete="off">
+                    </div>
+
                     <button type="submit" class="btn btn-primary" name="simpan">Simpan</button>
                   </form>
                 </div>

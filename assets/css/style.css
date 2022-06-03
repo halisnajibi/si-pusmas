@@ -9,3 +9,53 @@
 .container img {
     width: 100px;
 }
+
+.cetak_ro {
+    margin-top: 50px;
+}
+
+.cetak_ro h1 {
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 20px;
+    margin-top: 10px;
+}
+
+.cetak_ro .logo-hss {
+    float: left;
+    width: 100px;
+    margin-top: -100px;
+    margin-left: 200px;
+}
+
+.cetak_ro .logo-puskes {
+    float: right;
+    width: 100px;
+    margin-top: -100px;
+    margin-right: 200px;
+}
+
+.cetak_ro p {
+    clear: both;
+    font-size: 20px;
+    text-align: center;
+    margin-top: 50px;
+}
+
+.biodata {
+    margin-bottom: 30px;
+    font-size: 15px;
+}
+
+.apotek {
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.tanda-tangan {
+    text-align: right;
+    margin-top: 150px;
+    margin-right: 50px;
+    font-size: 15px;
+    font-weight: bold;
+}

@@ -173,16 +173,25 @@ function resepObat($pos)
     $ko = $pos["ko"];
     $jum = $pos["jumlah"];
     $ket = htmlspecialchars($pos["ket"]);
+    $id_obat2 = $pos["nama_obat2"];
+    $ko2 = $pos["ko2"];
+    $jum2 = $pos["jumlah2"];
+    $ket2 = htmlspecialchars($pos["ket2"]);
 
     //insest tabel resep_obat
     $sql1 = "INSERT INTO resep_obat VALUES('','$idpas','1',current_timestamp(),'berobat')";
     mysqli_query($conn, $sql1);
-    //insert tabel detail_resobt
+    //insert tabel detail_resep_obat
     $ambildata = mysqli_query($conn, "SELECT * FROM resep_obat ORDER BY id_ro DESC LIMIT 1");
     $ambil = mysqli_fetch_assoc($ambildata);
     $id_ro = $ambil["id_ro"];
+
     $sql2 = "INSERT INTO detail_resep_obat VALUES('','$id_ro','$id_obat','$jum','$ket')";
+    $sql_ro = "INSERT INTO detail_resep_obat VALUES('','$id_ro','$id_obat2','$jum2','$ket2')";
     mysqli_query($conn, $sql2);
+    mysqli_query($conn, $sql_ro);
+
+
     //update tabel obat
     $ambildata = mysqli_query($conn, "SELECT * FROM obat WHERE id_obat='$id_obat'");
     $ambil = mysqli_fetch_assoc($ambildata);
