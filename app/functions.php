@@ -159,8 +159,28 @@ function periksaPasien($pos)
     $sql = "INSERT INTO detail_rm VALUES
         ('','$id_rm',current_timestamp(),'$sub','$obj','$ass','$plant')";
     $sql2 = "DELETE FROM pendaftaran WHERE id_pasien=$idps";
+    $rpt = htmlspecialchars($pos["rpt"]);
+    $rpo = htmlspecialchars($pos["rpo"]);
+    $ram = htmlspecialchars($pos["ram"]);
+    $rao = htmlspecialchars($pos["rao"]);
+    $ro = htmlspecialchars($pos["ro"]);
+    $rayah = htmlspecialchars($pos["ra"]);
+    $ribu = htmlspecialchars($pos["ri"]);
+    $sql3 =
+        "UPDATE rekam_medis SET
+        tgl_rekam=current_timestamp(),
+        rpt='$rpt',
+        rpo='$rpo',
+        riw_alergi_makn='$ram',
+        riw_alergi_obt='$rao',
+        riw_operasi='$ro',
+        riw_ayah='$rayah',
+        riw_ibu='$ribu'
+            WHERE id_rm='$id_rm'";
+
     mysqli_query($conn, $sql);
     mysqli_query($conn, $sql2);
+    mysqli_query($conn, $sql3);
     return mysqli_affected_rows($conn);
 }
 

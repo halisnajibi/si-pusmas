@@ -124,7 +124,7 @@ if (isset($_POST["simpan"])) {
                     <li><a href="index.php"><i class="icon-home"></i><span>Dashboard</span></a></li>
                     <li class="active"><a href="data_antri.php"><i class="material-icons">pending_actions</i><span>Data Antrian</span></a></li>
 
-                    <li><a href="antrian_pasien.php"><i class="icon-notebook"></i><span>Data Berobat</span></a></li>
+                    <li><a href="rekam_medis.php"><i class="icon-notebook"></i><span>Data Rekam Medis</span></a></li>
                 </ul>
             </nav>
         </div>
@@ -187,6 +187,36 @@ if (isset($_POST["simpan"])) {
                                             <div class="form-group">
                                                 <label>Plant</label>
                                                 <input type="text" class="form-control" required name="plant" autocomplete="off">
+                                            </div>
+                                            <h3 class="card-title mt-5">Form Rekam Medis</h3>
+
+                                            <div class="form-group">
+                                                <label>Riwayat Penyakit Terdahulu</label>
+                                                <input type="text" class="form-control" required name="rpt" autocomplete="off">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Riwayat Pemberian Obat</label>
+                                                <input type="text" class="form-control" required name="rpo" autocomplete="off">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Riwayat Alergi Makanan</label>
+                                                <input type="text" class="form-control" required name="ram" autocomplete="off">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Riwayat Alergi Obat</label>
+                                                <input type="text" class="form-control" required name="rao" autocomplete="off">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Riwayat Operasi</label>
+                                                <input type="text" class="form-control" required name="ro" autocomplete="off">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Riwayat Ayah</label>
+                                                <input type="text" class="form-control" required name="ra" autocomplete="off">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Riwayat Ibu</label>
+                                                <input type="text" class="form-control" required name="ri" autocomplete="off">
                                             </div>
 
                                             <button type="submit" class="btn btn-primary" name="simpan">Simpan</button>

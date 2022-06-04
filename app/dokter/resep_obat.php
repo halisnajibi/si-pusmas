@@ -115,7 +115,7 @@ if (isset($_POST["simpan"])) {
           <li><a href="index.php"><i class="icon-home"></i><span>Dashboard</span></a></li>
           <li class="active"><a href="data_antri.php"><i class="material-icons">pending_actions</i><span>Data Antrian</span></a></li>
 
-          <li><a href="antrian_pasien.php"><i class="icon-notebook"></i><span>Data Berobat</span></a></li>
+          <li><a href="rekam_medis.php"><i class="icon-notebook"></i><span>Data Rekam Medis</span></a></li>
         </ul>
       </nav>
     </div>
