@@ -1,10 +1,7 @@
 <?php
 require "../functions.php";
 session_start();
-$rm = tabel("SELECT * FROM rekam_medis INNER JOIN pasien ON rekam_medis.id_pasien=pasien.id_pasien ");
-
-
-
+$rm = tabel("SELECT * FROM rekam_medis INNER JOIN pasien ON rekam_medis.id_pasien=pasien.id_pasien INNER JOIN detail_rm ON detail_rm.id_rm=rekam_medis.id_rm");
 
 ?>
 <!doctype html>
@@ -166,6 +163,7 @@ $rm = tabel("SELECT * FROM rekam_medis INNER JOIN pasien ON rekam_medis.id_pasie
            <tr class="gradeA">
             <td><?= $i ?></td>
             <td><?= $data["no_rm"] ?></td>
+
             <td><?= $data["nama_pasien"] ?></td>
             <td><?= $data["tgl_rekam"] ?></td>
             <td><?= $data["rpt"] ?></td>
@@ -176,15 +174,48 @@ $rm = tabel("SELECT * FROM rekam_medis INNER JOIN pasien ON rekam_medis.id_pasie
             <td><?= $data["riw_ayah"] ?></td>
             <td><?= $data["riw_ibu"] ?></td>
             <td class="actions">
-             <a href="edit_pasien.php?id=<?= $data["id_pasien"] ?>">
+             <a href="edit_rm.php?id=<?= $data["no_rm"] ?>">
               <button class="btn btn-sm btn-icon on-default m-r-5 button-edit" data-toggle="tooltip" data-original-title="Edit"><i class="icon-pencil" aria-hidden="true"></i></button>
              </a>
-             <a href="hapus_pasien.php?id=<?= $data["id_pasien"] ?>"">
+             <a href="hapus_rm.php?id=<?= $data["no_rm"] ?>"">
                                                         <button class=" btn btn-sm btn-icon on-default button-remove" data-toggle="tooltip" data-original-title="Hapus"><i class="icon-trash" aria-hidden="true" onclick="return confirm('anda yakin menghapus data ini?')"></i></button>
              </a>
+             <button class=" btn btn-sm btn-icon on-default button-remove" data-toggle="modal" data-target="#info<?= $data["id_detail"] ?>">
+              <i class="material-icons">info</i>
+             </button>
+
+             <div class="modal fade" id="info<?= $data["id_detail"] ?>" tabindex=" -1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog">
+               <div class="modal-content">
+                <div class="modal-header">
+                 <h5 class="modal-title" id="exampleModalLabel">Detail Rekam Medis</h5>
+                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                 </button>
+                </div>
+                <div class="modal-body">
+                 <table>
+                  <tr>
+                   <th>Tanggal Kunjungan</th>
+                   <th>Subjektif</th>
+                   <th>Objektif</th>
+                   <th>Assesment</th>
+                   <th>Plant</th>
+                  </tr>
+                  <tr>
+                   <td><?= $data["tgl_kunjungan"] ?></td>
+                   <td><?= $data["subjektif"] ?></td>
+                   <td><?= $data["objektif"] ?></td>
+                   <td><?= $data["assesmen"] ?></td>
+                   <td><?= $data["plant"] ?></td>
+                  </tr>
+                 </table>
+                </div>
+               </div>
+              </div>
+             </div>
             </td>
            </tr>
-
            <?php $i++; ?>
           <?php endforeach; ?>
          </tbody>
@@ -192,11 +223,8 @@ $rm = tabel("SELECT * FROM rekam_medis INNER JOIN pasien ON rekam_medis.id_pasie
        </div>
       </div>
      </div>
-
     </div>
    </div>
-
-
    <div class="section-body">
     <footer class="footer">
      <div class="container-fluid">
@@ -211,8 +239,6 @@ $rm = tabel("SELECT * FROM rekam_medis INNER JOIN pasien ON rekam_medis.id_pasie
    </div>
   </div>
  </div>
-
-
 
 
 
