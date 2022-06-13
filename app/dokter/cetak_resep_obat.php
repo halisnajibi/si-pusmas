@@ -3,7 +3,6 @@ require "../functions.php";
 $biodata = tabel("SELECT * FROM resep_obat INNER JOIN  pasien ON resep_obat.id_pasien=pasien.id_pasien INNER JOIN dokter ON resep_obat.id_dokter=dokter.id_dokter ORDER BY id_ro DESC LIMIT 1")[0];
 $idro = $biodata['id_ro'];
 $nama_obat = tabel("SELECT * FROM detail_resep_obat INNER JOIN obat ON detail_resep_obat.id_obat=obat.id_obat INNER JOIN kategori_obat ON obat.id_ko=kategori_obat.id_ko WHERE id_ro='$idro'");
-
 ?>
 
 <!DOCTYPE html>
@@ -31,7 +30,7 @@ $nama_obat = tabel("SELECT * FROM detail_resep_obat INNER JOIN obat ON detail_re
    <table cellspacing="5px">
     <tr>
      <td>No Resep</td>
-     <td>: 222222222222</td>
+     <td>: <?= $biodata["no_resep"] ?></td>
     </tr>
     <tr>
      <td>Nama Pasien</td>

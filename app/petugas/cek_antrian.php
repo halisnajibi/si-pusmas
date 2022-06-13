@@ -163,7 +163,22 @@ $pendaftaran = tabel("SELECT * FROM pendaftaran INNER JOIN pasien ON pendaftaran
                                                 <td><?= $data["nik"] ?></td>
                                                 <td><?= $data["nama_pasien"] ?></td>
                                                 <td><?= $data["nama_poli"] ?></td>
-                                                <td><?= $data["status_pasien"] ?></td>
+                                                <td>
+                                                    <?php if ($data["status_pasien"] == 'selesai') { ?>
+                                                        <span class="bg-success text-white rounded p-1">
+                                                            <?= $data["status_pasien"] ?>
+                                                        </span>
+                                                    <?php } else if ($data["status_pasien"] == 'menunggu') { ?>
+                                                        <span class="bg-danger text-white rounded p-1">
+                                                            <?= $data["status_pasien"] ?>
+                                                        </span>
+                                                    <?php } else { ?>
+                                                        <span class="bg-primary text-white rounded p-1">
+                                                            <?= $data["status_pasien"] ?>
+                                                        </span>
+                                                    <?php } ?>
+
+                                                </td>
                                             </tr>
                                             <?php $i++; ?>
                                         <?php endforeach; ?>

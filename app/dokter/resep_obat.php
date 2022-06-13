@@ -6,6 +6,9 @@ $idpas = $_SESSION["id_pasien"];
 $pasien = tabel("SELECT * FROM pasien WHERE id_pasien='$idpas'")[0];
 $ko = tabel("SELECT * FROM kategori_obat");
 $no = tabel("SELECT * FROM obat");
+$detail = mysqli_query($conn, "SELECT * FROM detail_rm ORDER BY id_detail DESC LIMIT 1");
+$data_detail = mysqli_fetch_assoc($detail);
+
 if (isset($_POST["simpan"])) {
   if (resepObat($_POST) > 0) {
     echo
@@ -206,7 +209,19 @@ if (isset($_POST["simpan"])) {
                       <label>Keterangan</label>
                       <input type="text" class="form-control" required name="ket2" autocomplete="off">
                     </div>
-
+                    <input type="hidden" name="iddetail" value="<?= $data_detail['id_detail'] ?>">
+                    <?php
+                    $query = mysqli_query($conn, "SELECT max(no_resep) as kodeTerbesar FROM resep_obat");
+                    $data = mysqli_fetch_array($query);
+                    $kodeBarang = $data['kodeTerbesar'];
+                    $urutan = (int) substr($kodeBarang, 3, 3);
+                    $urutan++;
+                    $huruf = "R";
+                    $no = sprintf("%03s", $urutan);
+                    $kodeBarang = $huruf . '-' . $no;
+                    $noAntri = $kodeBarang;
+                    ?>
+                    <input type="hidden" name="no_resep" value="<?= $noAntri ?>">
                     <button type="submit" class="btn btn-primary" name="simpan">Simpan</button>
                   </form>
                 </div>

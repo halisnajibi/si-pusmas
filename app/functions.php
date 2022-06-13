@@ -156,9 +156,11 @@ function periksaPasien($pos)
     $ass = htmlspecialchars($pos["ass"]);
     $plant = htmlspecialchars($pos["plant"]);
     $idps = $pos["id_ps"];
+    $jamkes = $pos["jamkes"];
+    $no_jamkes = $pos["no_jamkes"];
     $sql = "INSERT INTO detail_rm VALUES
         ('','$id_rm',current_timestamp(),'$sub','$obj','$ass','$plant')";
-    $sql2 = "DELETE FROM pendaftaran WHERE id_pasien=$idps";
+    $sql2 = "UPDATE pendaftaran SET status_pasien='selesai' WHERE  id_pasien=$idps";
     $rpt = htmlspecialchars($pos["rpt"]);
     $rpo = htmlspecialchars($pos["rpo"]);
     $ram = htmlspecialchars($pos["ram"]);
@@ -166,6 +168,7 @@ function periksaPasien($pos)
     $ro = htmlspecialchars($pos["ro"]);
     $rayah = htmlspecialchars($pos["ra"]);
     $ribu = htmlspecialchars($pos["ri"]);
+
     $sql3 =
         "UPDATE rekam_medis SET
         tgl_rekam=current_timestamp(),
@@ -177,6 +180,7 @@ function periksaPasien($pos)
         riw_ayah='$rayah',
         riw_ibu='$ribu'
             WHERE id_rm='$id_rm'";
+
 
     mysqli_query($conn, $sql);
     mysqli_query($conn, $sql2);
@@ -197,9 +201,10 @@ function resepObat($pos)
     $ko2 = $pos["ko2"];
     $jum2 = $pos["jumlah2"];
     $ket2 = htmlspecialchars($pos["ket2"]);
-
+    $iddetail = $pos["iddetail"];
+    $no_resep = $pos["no_resep"];
     //insest tabel resep_obat
-    $sql1 = "INSERT INTO resep_obat VALUES('','$idpas','1',current_timestamp(),'berobat')";
+    $sql1 = "INSERT INTO resep_obat VALUES('','$no_resep','$idpas','$iddetail','1',current_timestamp(),'berobat')";
     mysqli_query($conn, $sql1);
     //insert tabel detail_resep_obat
     $ambildata = mysqli_query($conn, "SELECT * FROM resep_obat ORDER BY id_ro DESC LIMIT 1");

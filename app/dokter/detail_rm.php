@@ -1,7 +1,8 @@
 <?php
 require "../functions.php";
 session_start();
-$rm = tabel("SELECT  * FROM rekam_medis INNER JOIN pasien ON rekam_medis.id_pasien=pasien.id_pasien ");
+$id = $_GET["id"];
+$detail = mysqli_query($conn, "SELECT  * FROM detail_rm WHERE id_rm='$id'");
 
 ?>
 <!doctype html>
@@ -139,57 +140,32 @@ $rm = tabel("SELECT  * FROM rekam_medis INNER JOIN pasien ON rekam_medis.id_pasi
      <div class="row clearfix">
       <div class="col-lg-12">
 
-       <div class="table-responsive mb-4">
-        <table class="table table-hover js-basic-example dataTable table_custom spacing5">
-         <thead>
-          <tr>
-           <th>No</th>
-           <th>No Rekam Medis</th>
-           <th>Nama Pasien</th>
-           <th>Tanggal Rekam</th>
-           <th>RPT</th>
-           <th>RPO</th>
-           <th>RAM</th>
-           <th>RAO</th>
-           <th>RO</th>
-           <th>RAYAH</th>
-           <th>RIBU</th>
-           <th>aksi</th>
+       <table class="table table-hover js-basic-example dataTable table_custom spacing5">
+        <thead>
+         <tr>
+          <th>No</th>
+          <th>Tanggal kunjungan</th>
+          <th>sujektif</th>
+          <th>objektif</th>
+          <th>assesment</th>
+          <th>plant</th>
+         </tr>
+        </thead>
+        <tbody>
+         <?php $i = 1; ?>
+         <?php foreach ($detail as $data) : ?>
+          <tr class="gradeA">
+           <td><?= $i; ?></td>
+           <td><?= $data["tgl_kunjungan"] ?></td>
+           <td><?= $data["subjektif"] ?></td>
+           <td><?= $data["objektif"] ?></td>
+           <td><?= $data["assesmen"] ?></td>
+           <td><?= $data["plant"] ?></td>
           </tr>
-         </thead>
-         <tbody>
-          <?php $i = 1; ?>
-          <?php foreach ($rm as $data) : ?>
-           <tr class="gradeA">
-            <td><?= $i ?></td>
-
-            <td><?= $data["no_rm"] ?></td>
-
-            <td><?= $data["nama_pasien"] ?></td>
-            <td><?= $data["tgl_rekam"] ?></td>
-            <td><?= $data["rpt"] ?></td>
-            <td><?= $data["rpo"] ?></td>
-            <td><?= $data["riw_alergi_makn"] ?></td>
-            <td><?= $data["riw_alergi_obt"] ?></td>
-            <td><?= $data["riw_operasi"] ?></td>
-            <td><?= $data["riw_ayah"] ?></td>
-            <td><?= $data["riw_ibu"] ?></td>
-            <td class="actions">
-             <a href="edit_rm.php?id=<?= $data["no_rm"] ?>">
-              <button class="btn btn-sm btn-icon on-default m-r-5 button-edit" data-toggle="tooltip" data-original-title="Edit"><i class="icon-pencil" aria-hidden="true"></i></button>
-             </a>
-             <a href="hapus_rm.php?id=<?= $data["no_rm"] ?>"">
-                                                        <button class=" btn btn-sm btn-icon on-default button-remove" data-toggle="tooltip" data-original-title="Hapus"><i class="icon-trash" aria-hidden="true" onclick="return confirm('anda yakin menghapus data ini?')"></i></button>
-             </a>
-
-             <a href="detail_rm.php?id=<?= $data["id_rm"] ?>"> <i class="material-icons">info</i></a>
-            </td>
-           </tr>
-           <?php $i++; ?>
-          <?php endforeach; ?>
-         </tbody>
-        </table>
-       </div>
+          <?php $i++; ?>
+         <?php endforeach; ?>
+        </tbody>
+       </table>
       </div>
      </div>
     </div>

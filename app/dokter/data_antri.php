@@ -3,7 +3,7 @@ require "../functions.php";
 session_start();
 $_SESSION["tes"] = "uji coba";
 
-$pendaftaran = tabel("SELECT * FROM pendaftaran INNER JOIN pasien ON pendaftaran.id_pasien=pasien.id_pasien INNER JOIN poli ON pendaftaran.id_poli=poli.id_poli ");
+$pendaftaran = tabel("SELECT * FROM pendaftaran INNER JOIN pasien ON pendaftaran.id_pasien=pasien.id_pasien INNER JOIN poli ON pendaftaran.id_poli=poli.id_poli WHERE status_pasien != 'selesai'");
 
 
 
@@ -209,7 +209,7 @@ $pendaftaran = tabel("SELECT * FROM pendaftaran INNER JOIN pasien ON pendaftaran
                                                                         </tr>
                                                                         <tr>
                                                                             <td><?= $data["nik"] ?></td>
-                                                                            <td><?= $data["nama"] ?></td>
+                                                                            <td><?= $data["nama_pasien"] ?></td>
                                                                             <td><?= $data["gol_darah"] ?></td>
                                                                         </tr>
                                                                     </table>

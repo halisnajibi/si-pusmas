@@ -171,6 +171,8 @@ if (isset($_POST["simpan"])) {
                                         <div class="form-group">
                                             <label>No Rekam Medis</label>
                                             <input type="text" class="form-control" required name="nrm" readonly value="<?= $rm["no_rm"] ?>">
+                                            <input type="hidden" value="<?= $rm["jamkes"] ?>" name="jamkes">
+                                            <input type="hidden" value="<?= $rm["no_jamkes"] ?>" name="no_jamkes">
                                         </div>
                                         <div class="form-group">
                                             <label>Subjektif</label>
@@ -192,31 +194,31 @@ if (isset($_POST["simpan"])) {
 
                                             <div class="form-group">
                                                 <label>Riwayat Penyakit Terdahulu</label>
-                                                <input type="text" class="form-control" required name="rpt" autocomplete="off">
+                                                <input type="text" class="form-control" required name="rpt" autocomplete="off" value="<?= $rm["rpt"] ?>">
                                             </div>
                                             <div class="form-group">
                                                 <label>Riwayat Pemberian Obat</label>
-                                                <input type="text" class="form-control" required name="rpo" autocomplete="off">
+                                                <input type="text" class="form-control" required name="rpo" autocomplete="off" value="<?= $rm["rpo"] ?>">
                                             </div>
                                             <div class="form-group">
                                                 <label>Riwayat Alergi Makanan</label>
-                                                <input type="text" class="form-control" required name="ram" autocomplete="off">
+                                                <input type="text" class="form-control" required name="ram" autocomplete="off" value="<?= $rm["riw_alergi_makn"] ?>">
                                             </div>
                                             <div class="form-group">
                                                 <label>Riwayat Alergi Obat</label>
-                                                <input type="text" class="form-control" required name="rao" autocomplete="off">
+                                                <input type="text" class="form-control" required name="rao" autocomplete="off" value="<?= $rm["riw_alergi_obt"] ?>">
                                             </div>
                                             <div class="form-group">
                                                 <label>Riwayat Operasi</label>
-                                                <input type="text" class="form-control" required name="ro" autocomplete="off">
+                                                <input type="text" class="form-control" required name="ro" autocomplete="off" value="<?= $rm["riw_operasi"] ?>">
                                             </div>
                                             <div class="form-group">
                                                 <label>Riwayat Ayah</label>
-                                                <input type="text" class="form-control" required name="ra" autocomplete="off">
+                                                <input type="text" class="form-control" required name="ra" autocomplete="off" value="<?= $rm["riw_ayah"] ?>">
                                             </div>
                                             <div class="form-group">
                                                 <label>Riwayat Ibu</label>
-                                                <input type="text" class="form-control" required name="ri" autocomplete="off">
+                                                <input type="text" class="form-control" required name="ri" autocomplete="off" value="<?= $rm["riw_ibu"] ?>">
                                             </div>
 
                                             <button type="submit" class="btn btn-primary" name="simpan">Simpan</button>

@@ -1,5 +1,6 @@
 <?php
 require "../functions.php";
+session_start();
 if (isset($_POST["simpan"])) {
     if (tambahPasien($_POST) > 0) {
         echo
